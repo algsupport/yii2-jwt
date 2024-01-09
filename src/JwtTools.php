@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace bizley\jwt;
+namespace algsupport\jwt;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\ClaimsFormatter;
@@ -28,7 +28,6 @@ use yii\di\Instance;
  * This implementation allows developer to pick & choose JWT tools to use for example in order to only validate
  * a token (without issuing it first, so signing key does not need to be defined).
  *
- * @author Paweł Bizley Brzozowski <pawel@positive.codes>
  * @since 4.1.0
  */
 class JwtTools extends Component
@@ -69,7 +68,7 @@ class JwtTools extends Component
     /**
      * @var array<array<mixed>|(callable(): mixed)|string>|(callable(): mixed)|null List of constraints that
      * will be used to validate against or an anonymous function that can be resolved as such list. The signature of
-     * the function should be `function(\bizley\jwt\JwtTools|\bizley\jwt\Jwt $jwt)` where $jwt will be an instance of
+     * the function should be `function(\algsupport\jwt\JwtTools|\algsupport\jwt\Jwt $jwt)` where $jwt will be an instance of
      * this component.
      * For the constraints you can use instances of Lcobucci\JWT\Validation\Constraint or configuration arrays to be
      * resolved as such.

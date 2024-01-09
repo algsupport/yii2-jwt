@@ -1,21 +1,8 @@
-![Latest Stable Version](https://img.shields.io/packagist/v/bizley/jwt.svg)
-[![Total Downloads](https://img.shields.io/packagist/dt/bizley/jwt.svg)](https://packagist.org/packages/bizley/jwt)
-![License](https://img.shields.io/packagist/l/bizley/jwt.svg)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fbizley%2Fyii2-jwt%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/bizley/yii2-jwt/master)
-
 # JWT Integration For Yii 2
 
 This extension provides the [JWT](https://github.com/lcobucci/jwt) integration for [Yii 2 framework](https://www.yiiframework.com).
 
 > This is a fork of [sizeg/yii2-jwt](https://github.com/sizeg/yii2-jwt) package
-
-# Available versions
-
-| bizley/yii2-jwt | lcobucci/jwt |   php   |
-|:---------------:|:------------:|:-------:|
-|     `^4.0`      |    `^5.0`    | `>=8.1` |
-|     `^3.0`      |    `^4.0`    | `>=7.4` |
-|     `^2.0`      |    `^3.0`    | `>=7.1` |
 
 See [lcobucci/jwt](https://github.com/lcobucci/jwt) repo for details about the version.
 
@@ -26,25 +13,25 @@ Add the package to your `composer.json`:
 ```json
 {
     "require": {
-        "bizley/jwt": "^4.0"
+        "algsupport/jwt": "*"
     }
 }
 ```
 
-and run `composer update` or alternatively run `composer require bizley/jwt:^4.0`
+and run `composer update` or alternatively run `composer require algsupport/jwt`
 
 ## Basic usage
 
 Add `jwt` component to your configuration file.
 
 If your application is both the issuer and the consumer of JWT (the common case, a.k.a. Standard version) 
-use `bizley\jwt\Jwt` component:
+use `algsupport\jwt\Jwt` component:
 
 ```php
 [
     'components' => [
         'jwt' => [
-            'class' => \bizley\jwt\Jwt::class,
+            'class' => \algsupport\jwt\Jwt::class,
             'signer' => ... // Signer ID, or signer object, or signer configuration, see "Available signers" below
             'signingKey' => ... // Secret key string or path to the signing key file, see "Keys" below
             // ... any additional configuration here
@@ -54,13 +41,13 @@ use `bizley\jwt\Jwt` component:
 ```
 
 If your application just needs some special JWT tools (like validator or parser, a.k.a. Toolset version) 
-use `bizley\jwt\JwtTools` component:
+use `algsupport\jwt\JwtTools` component:
 
 ```php
 [
     'components' => [
         'jwt' => [
-            'class' => \bizley\jwt\JwtTools::class,
+            'class' => \algsupport\jwt\JwtTools::class,
             // ... any additional configuration here
         ],
     ],
@@ -112,10 +99,10 @@ Configuration array can be as the following:
 ]
 ```
 
-- key (`bizley\jwt\Jwt::KEY`) - _string_, default `''`,
-- passphrase (`bizley\jwt\Jwt::PASSPHRASE`) - _string_, default `''`,
-- method (`bizley\jwt\Jwt::METHOD`) - _string_, default `bizley\jwt\Jwt::METHOD_PLAIN`,
-  available: `bizley\jwt\Jwt::METHOD_PLAIN`, `bizley\jwt\Jwt::METHOD_BASE64`, `bizley\jwt\Jwt::METHOD_FILE` 
+- key (`algsupport\jwt\Jwt::KEY`) - _string_, default `''`,
+- passphrase (`algsupport\jwt\Jwt::PASSPHRASE`) - _string_, default `''`,
+- method (`algsupport\jwt\Jwt::METHOD`) - _string_, default `algsupport\jwt\Jwt::METHOD_PLAIN`,
+  available: `algsupport\jwt\Jwt::METHOD_PLAIN`, `algsupport\jwt\Jwt::METHOD_BASE64`, `algsupport\jwt\Jwt::METHOD_FILE` 
   (see https://lcobucci-jwt.readthedocs.io/en/latest/configuration/)
   
 Simple string keys are shortcuts to the following array configs:
@@ -124,7 +111,7 @@ Simple string keys are shortcuts to the following array configs:
   [
       'key' => /* given key itself */,
       'passphrase' => '',
-      'method' => \bizley\jwt\Jwt::METHOD_FILE,
+      'method' => \algsupport\jwt\Jwt::METHOD_FILE,
   ]
   ```
   Detecting `@` at the beginning assumes Yii alias has been provided, so it will be resolved with `Yii::getAlias()`.
@@ -134,7 +121,7 @@ Simple string keys are shortcuts to the following array configs:
   [
       'key' => /* given key itself */,
       'passphrase' => '',
-      'method' => \bizley\jwt\Jwt::METHOD_PLAIN,
+      'method' => \algsupport\jwt\Jwt::METHOD_PLAIN,
   ]
   ```
 
@@ -239,7 +226,7 @@ thrown. There are several ways to provide constraints:
           
           or
           anonymous function that can be resolved as array of Constraint instances with signature
-          `function(\bizley\jwt\Jwt|\bizley\jwt\JwtTools $jwt)` where $jwt will be an instance of used component
+          `function(\algsupport\jwt\Jwt|\algsupport\jwt\JwtTools $jwt)` where $jwt will be an instance of used component
       */,
   ]
   ```
@@ -259,7 +246,7 @@ class ExampleController extends Controller
         $behaviors = parent::behaviors();
         
         $behaviors['authenticator'] = [
-            'class' => \bizley\jwt\JwtHttpBearerAuth::class,
+            'class' => \algsupport\jwt\JwtHttpBearerAuth::class,
         ];
 
         return $behaviors;
@@ -268,8 +255,8 @@ class ExampleController extends Controller
 ```
 
 There are special options available:
-- jwt - _string_ ID of component (default with `'jwt'`), component configuration _array_, or an instance of `bizley\jwt\Jwt` 
-  or `bizley\jwt\JwtTools`,
+- jwt - _string_ ID of component (default with `'jwt'`), component configuration _array_, or an instance of `algsupport\jwt\Jwt` 
+  or `algsupport\jwt\JwtTools`,
 - auth - callable or `null` (default) - anonymous function with signature `function (\Lcobucci\JWT\Token $token)` that 
   should return identity of user authenticated with the JWT payload information. If $auth is not provided method 
   `yii\web\User::loginByAccessToken()` will be called instead.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace bizley\jwt;
+namespace algsupport\jwt;
 
 use Lcobucci\JWT\Encoding\CannotDecodeContent;
 use Lcobucci\JWT\Token;
@@ -31,14 +31,12 @@ use function get_class;
  * {
  *     return [
  *         'JWTBearerAuth' => [
- *             'class' => \bizley\jwt\JwtHttpBearerAuth::class,
+ *             'class' => \algsupport\jwt\JwtHttpBearerAuth::class,
  *         ],
  *     ];
  * }
  * ```
  *
- * @author Paweł Bizley Brzozowski <pawel@positive.codes> since 2.0 (fork)
- * @author Dmitriy Demin <sizemail@gmail.com> original package
  */
 class JwtHttpBearerAuth extends HttpBearerAuth
 {

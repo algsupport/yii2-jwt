@@ -33,19 +33,19 @@ Add `jwt` component to your configuration file:
 [
     'components' => [
         'jwt' => [
-            'class' => \bizley\jwt\Jwt::class,
-            'signer' => \bizley\jwt\Jwt::ES256,
+            'class' => \algsupport\jwt\Jwt::class,
+            'signer' => \algsupport\jwt\Jwt::ES256,
             'signingKey' => [
                 'key' => '', // path to your PRIVATE key, you can start the path with @ to indicate this is a Yii alias
                 'passphrase' => 'stopwars', // omit it if you are not adding any passphrase
-                'method' => \bizley\jwt\Jwt::METHOD_FILE,
+                'method' => \algsupport\jwt\Jwt::METHOD_FILE,
             ],
             'verifyingKey' => [ // required for asymmetric keys
                 'key' => '', // path to your PUBLIC key, you can start the path with @ to indicate this is a Yii alias
                 'passphrase' => 'stopwars', // omit it if you are not adding any passphrase
-                'method' => \bizley\jwt\Jwt::METHOD_FILE,
+                'method' => \algsupport\jwt\Jwt::METHOD_FILE,
             ],
-            'validationConstraints' => static fn (\bizley\jwt\Jwt $jwt) {
+            'validationConstraints' => static fn (\algsupport\jwt\Jwt $jwt) {
                 $config = $jwt->getConfiguration();
                 return [
                     new \Lcobucci\JWT\Validation\Constraint\SignedWith($config->signer(), $config->verificationKey()),
@@ -126,7 +126,7 @@ class ExampleController extends Controller
         $behaviors = parent::behaviors();
         
         $behaviors['authenticator'] = [
-            'class' => \bizley\jwt\JwtHttpBearerAuth::class,
+            'class' => \algsupport\jwt\JwtHttpBearerAuth::class,
         ];
 
         return $behaviors;

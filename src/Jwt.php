@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace bizley\jwt;
+namespace algsupport\jwt;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\ClaimsFormatter;
@@ -19,10 +19,8 @@ use yii\base\InvalidConfigException;
  * @see https://github.com/lcobucci/jwt
  *
  * This implementation is based on the \Lcobucci\JWT\Configuration setup which requires both signing and verifying keys
- * to be defined (the standard way). If you need only some JWT tools, please use \bizley\jwt\JwtTools directly.
+ * to be defined (the standard way). If you need only some JWT tools, please use \algsupport\jwt\JwtTools directly.
  *
- * @author Paweł Bizley Brzozowski <pawel@positive.codes> since 2.0 (fork)
- * @author Dmitriy Demin <sizemail@gmail.com> original package
  */
 class Jwt extends JwtTools
 {
